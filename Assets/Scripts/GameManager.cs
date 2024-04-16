@@ -5,18 +5,23 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-	private float Timer;
-	[SerializeField] private float TimerBorder;
-	public bool IsRoll;
+	public bool IsRoll { get { return _isRoll; } }
+	[SerializeField] private bool _isRoll;
+
+
+	private float _timer;
+	[SerializeField] private float _timerBorder;
+	
+
 	public Transform[] SlotWindowTransforms;
-	[SerializeField] private List<SlotSO> SlotItemList;
-	public static GameManager instance;
+	[SerializeField] private List<SlotSO> _slotItemList;
+
 
 
 	public event EventHandler PressedSpinButton;
 
 
-
+	public static GameManager instance;
 	private void Awake()
 	{
 		instance = this;
@@ -26,18 +31,19 @@ public class GameManager : MonoBehaviour
 
 	private void Start()
 	{
-		IsRoll = false;
+		ChangeIsRollingStatus(false);
 		StartRandomIcons();
 	}
 
 	private void Update()
 	{
+		Debug.Log(IsRoll);
 		if (!IsRoll) return;
-		Timer += Time.deltaTime;
-		if (Timer >= TimerBorder)
+		_timer += Time.deltaTime;
+		if (_timer >= _timerBorder)
 		{
 			SpawnRandomSlotItem(this, EventArgs.Empty);
-			Timer = 0f;
+			_timer = 0f;
 		}
 	}
 
@@ -46,8 +52,7 @@ public class GameManager : MonoBehaviour
 		for (int i = 0; i < 5; i++)
 		{
 			int randomNumber = UnityEngine.Random.Range(0, 8);
-			Debug.Log(randomNumber);
-			Transform randomSlot = SlotItemList[randomNumber].Prefab;
+			Transform randomSlot = _slotItemList[randomNumber].Prefab;
 			Instantiate(randomSlot, SlotWindowTransforms[i].position, Quaternion.identity, SlotWindowTransforms[i]);
 		}
 	}
@@ -58,16 +63,19 @@ public class GameManager : MonoBehaviour
 		for (int i = 0; i < SlotWindowTransforms.Length; i++)
 		{
 			int randomNumber = UnityEngine.Random.Range(0, 8);
-			Debug.Log(randomNumber);
-			Transform randomSlot = SlotItemList[randomNumber].Prefab;
+			Transform randomSlot = _slotItemList[randomNumber].Prefab;
 			Instantiate(randomSlot, SlotWindowTransforms[i].position, Quaternion.identity, SlotWindowTransforms[i]);
 		}
 	}
 
-
-
 	public void Spin()
 	{
 		PressedSpinButton?.Invoke(this, EventArgs.Empty);
+	}
+
+
+	public void ChangeIsRollingStatus(bool value)
+	{
+		_isRoll = value;
 	}
 }

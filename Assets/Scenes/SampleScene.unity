@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 402787125}
   - component: {fileID: 402787124}
   - component: {fileID: 402787123}
+  - component: {fileID: 402787127}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -257,6 +258,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!95 &402787127
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402787122}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 40025c7b4ca1dc9449bb52f9463b46fd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &438375154
 GameObject:
   m_ObjectHideFlags: 0
@@ -1544,8 +1566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 621765e138985854d8e9177765936594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimerBorder: 0.09
-  IsRoll: 0
+  _timerBorder: 0.09
   SlotWindowTransforms:
   - {fileID: 1512895030}
   - {fileID: 438375155}
@@ -1567,7 +1588,7 @@ MonoBehaviour:
   - {fileID: 1133848322}
   - {fileID: 1386420157}
   - {fileID: 759434227}
-  SlotItemList:
+  _slotItemList:
   - {fileID: 11400000, guid: bfa0e55c317da4142831bed3326126d3, type: 2}
   - {fileID: 11400000, guid: 4045f94f0dac258418c4492e2a888e12, type: 2}
   - {fileID: 11400000, guid: bffbd62781699ed4e9895690698b6621, type: 2}
